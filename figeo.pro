@@ -6,18 +6,18 @@ CONFIG -= qt
 SOURCES += main.cpp \
     circulo.cpp \
     extras.cpp \
-    jogador.cpp \
     reta.cpp \
     retangulo.cpp \
     screen.cpp \
-    triangulo.cpp
+    triangulo.cpp \
+    game.cpp
 
 HEADERS += \
     circulo.h \
     extras.h \
     figurageometrica.h \
-    jogador.h \
     reta.h \
     retangulo.h \
     screen.h \
-    triangulo.h
+    triangulo.h \
+    game.h

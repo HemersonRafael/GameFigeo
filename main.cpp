@@ -6,12 +6,10 @@
 #include "figurageometrica.h"
 #include <cstdio>
 #include <cstring>
-using namespace std;
 
 int main(){
 
     Extras extras;
-    //Jogador gamer;
     unsigned int sizeFile = 10;
 
     string fileName = "figuras.csv";
@@ -20,7 +18,7 @@ int main(){
     std::vector <std::string> gabarito;
     std::vector <std::string> resultado;
     int pontuacao = 0,controle ;
-    int sizeScreen[2] = {60,20};
+    int sizeScreen[2];
     int microseconds = 1000000;
 
     extras.randFigures(fileName.c_str(),sizeFile);
@@ -34,11 +32,10 @@ int main(){
         tela.setBrush(brush[i]);
         data[i]->draw(tela);
 
-
-        cout << tela;
-        cout << "Figura " << i+1  << " e um: "<< endl;
-        cout << "Digite 1 - para reta, 2 - para retangulo, 3 - para circulo, 4 - para tringulo";
-        cin >> controle;
+        std::cout << "Figura " << i+1  << " e um: "<< endl;
+        std::cout << tela;
+        std::cout << "Digite 1 - para reta, 2 - para retangulo, 3 - para circulo ou 4 - para triangulo:\n";
+        std::cin >> controle;
 
         switch (controle) {
             case 1:
@@ -67,10 +64,13 @@ int main(){
         }
 
         tela.clear();
-        cout << endl;
+        std::cout << endl;
         usleep(microseconds);
     }
-    cout << "sua pontuacao foi de " << pontuacao << "pontos" << endl;
+    std::cout << "sua pontuacao foi de " << pontuacao << "pontos" << std::endl;
+    for(int i=0;i<sizeFile;i++){
+        std::cout << gabarito[i]<< " = " << resultado[i] << std::endl;
+    }
     system("read -p \"Pressione enter para sair\" saindo");
     remove("figuras.csv");
     return 0;
