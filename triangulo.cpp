@@ -18,6 +18,6 @@ void Triangulo::draw(Screen &t)
     r1.draw(t);
     Reta r2(x1,y1,x3,(y1/2)+y1);
     r2.draw(t);
-    Reta r3(x2,(y1/2),x3,(y1/2)+y1);
+    Reta r3(x2,(y1/2),x3,(y1/2)+y1+1);
     r3.draw(t);
 }

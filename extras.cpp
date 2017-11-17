@@ -146,9 +146,9 @@ void Extras::randFigures(std::string fileName, int size)
         {
         case 1:{
             data = "reta";
-            int teste1 = rand()%6 +1;
+            int teste1 = 0 ;
             int chave = rand()%4 + 1;
-            int teste2 = rand()%13 + 5;
+            int teste2 = rand()%9 + 5;
             if(chave == 1){
                 caracteristicasAleatorias[0]= teste1;
                 caracteristicasAleatorias[1]=teste1;
@@ -168,10 +168,10 @@ void Extras::randFigures(std::string fileName, int size)
                 caracteristicasAleatorias[3]=teste2;
             }
             else if(chave == 4){
-                caracteristicasAleatorias[0]= teste1;
+                caracteristicasAleatorias[0]= 10;
                 caracteristicasAleatorias[1]=1;
                 caracteristicasAleatorias[2]=1;
-                caracteristicasAleatorias[3]=teste1;
+                caracteristicasAleatorias[3]=10;
             }
 
             for(int i =0; i<4; i++){
@@ -187,11 +187,11 @@ void Extras::randFigures(std::string fileName, int size)
             {
                 if(i<2)
                 {
-                    caracteristicasAleatorias[i] = rand() % 5 + 1*i;
+                    caracteristicasAleatorias[i] = 0;
                 }
                 else
                 {
-                    caracteristicasAleatorias[i] = rand() % 17 + 1;
+                    caracteristicasAleatorias[i] = rand() % 15 + 5;
                 }
                 data+= "," + std::to_string(caracteristicasAleatorias[i]) ;
             }
@@ -208,7 +208,7 @@ void Extras::randFigures(std::string fileName, int size)
                 }
                 else if(i == 2)
                 {
-                    caracteristicasAleatorias[i] = rand() % 5 + 4;
+                    caracteristicasAleatorias[i] = 5;
                 }
 
                 else if(i==3)
@@ -223,27 +223,30 @@ void Extras::randFigures(std::string fileName, int size)
             break;
             }
         case 4:{
-            int y = 10;
-            int x1 =rand()%14 + 5;
-            int x2 =y;
-            int x3 =x2;
-
+            int chave = rand()%2 + 1;
             data = "triangulo";
-            caracteristicasAleatorias[0]= x1;
-            caracteristicasAleatorias[1]= y;
-            caracteristicasAleatorias[2]= x2;
-            caracteristicasAleatorias[3]= x3;
+            if(chave == 1){
+                caracteristicasAleatorias[0]= 0;
+                caracteristicasAleatorias[1]= 10;
+                caracteristicasAleatorias[2]= 5;
+                caracteristicasAleatorias[3]= 5;
+            }
+            else if(chave == 2){
+                caracteristicasAleatorias[0]= 10;
+                caracteristicasAleatorias[1]= 10;
+                caracteristicasAleatorias[2]= 5;
+                caracteristicasAleatorias[3]= 5;
+            }
 
 
-            for(int i =0; i<4; i++)
-            {
+            for(int i =0; i<4; i++){
                 data+= "," + std::to_string(caracteristicasAleatorias[i]) ;
             }
             break;
         }
         }
 
-        brushAleatorio = 'o';
+        brushAleatorio = 'O';
         data+= "," + std::to_string(brushAleatorio);
         logCsv(data.c_str(),fileName.c_str(),header.c_str());
     }
