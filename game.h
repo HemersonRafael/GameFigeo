@@ -1,22 +1,40 @@
-#ifndef JOGADOR_H
-#define JOGADOR_H
+#ifndef GAME_H
+#define GAME_H
+#include <iostream>
 #include <string>
+#include <vector>
+#include "figurageometrica.h"
+#include "data.h"
 
-class Jogador
+using namespace std;
+
+class Game
 {
 public:
-    Jogador();
-    virtual ~Jogador();
-    void setNome(std::string _nome);
-    std::string getNome();
+    Game();
+    virtual ~Game();
+    void setNome(string _nome);
+    string getNome();
     void setScore(int _score);
     int getScore();
-
-protected:
+    void menu();
+    void startGame();
+    void rank();
 
 private:
-    std::string nome;
+    string nome;
     int score;
+    Data data;
+    unsigned int sizeFile;
+    string fileName;
+    vector <FiguraGeometrica*> figura;
+    vector <char> brush;
+    vector <string> gabarito;
+    vector <string> resultado;
+    int pontuacao;
+    int sizeScreen[2];
+    int microseconds;
+
 };
 
-#endif // JOGADOR_H
+#endif // GAME_H

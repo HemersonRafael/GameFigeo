@@ -1,13 +1,12 @@
 #ifndef EXTRAS_H
 #define EXTRAS_H
 
-#include <iostream>
 #include <fstream>
 #include <string>
 #include <vector>
 #include "figurageometrica.h"
 
-class Extras
+class Data
 {
 public:
     //!Cria um arquivo do tipo CSV e salva a forma de objetos como reta, retângulo, círculo e screen no nome do arquivo atribuído.

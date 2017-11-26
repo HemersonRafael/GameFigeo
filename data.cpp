@@ -3,14 +3,14 @@
 #include <sstream>
 #include <cstdlib>
 #include <ctime>
-#include "extras.h"
+#include "data.h"
 #include "reta.h"
 #include "retangulo.h"
 #include "circulo.h"
 #include "triangulo.h"
 
 
-void Extras::logCsv(std::string data, std::string filename, std::string header)
+void Data::logCsv(std::string data, std::string filename, std::string header)
 {
     std::ofstream myfile;
 
@@ -36,7 +36,7 @@ void Extras::logCsv(std::string data, std::string filename, std::string header)
     }
 }
 
-void Extras::loadFigures(std::string fileName, int sizeScreen[], std::vector<FiguraGeometrica *> &data, std::vector<char> &brush, std::vector<string> &gabarito)
+void Data::loadFigures(std::string fileName, int sizeScreen[], std::vector<FiguraGeometrica *> &data, std::vector<char> &brush, std::vector<string> &gabarito)
 {
 
     srand(time(0));
@@ -128,11 +128,11 @@ void Extras::loadFigures(std::string fileName, int sizeScreen[], std::vector<Fig
     }
 }
 
-void Extras::randFigures(std::string fileName, int size)
+void Data::randFigures(std::string fileName, int size)
 {
     srand(time(0));
     std::string data;
-    std::string header = "20,20";
+    std::string header = "15,20";
     int figura;
     int caracteristicasAleatorias[4];
     unsigned int brushAleatorio;
@@ -252,4 +252,3 @@ void Extras::randFigures(std::string fileName, int size)
     }
     std::cout << "Done!" <<std::endl;
 }
-
