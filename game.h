@@ -13,17 +13,12 @@ class Game
 public:
     Game();
     virtual ~Game();
-    void setNome(string _nome);
-    string getNome();
-    void setScore(int _score);
-    int getScore();
     void menu();
     void startGame();
     void rank();
 
 private:
     string nome;
-    int score;
     Data data;
     unsigned int sizeFile;
     string fileName;

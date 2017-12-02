@@ -1,9 +1,9 @@
 #include <iostream>
+#include <iomanip>
 #include <cstdio>
 #include <cstdlib>
 #include <string>
 #include <vector>
-#include "unistd.h"
 #include "figurageometrica.h"
 #include "screen.h"
 #include "data.h"
@@ -14,7 +14,6 @@ using namespace std;
 Game::Game()
 {
     nome = " ";
-    score = 0;
     sizeFile = 10;
     fileName = "figuras.csv";
     pontuacao = 0;
@@ -25,25 +24,12 @@ Game::~Game()
 {
     //dtor
 }
-void Game::setNome(string _nome)
-{
-    nome = _nome;
-}
-string Game::getNome()
-{
-    return nome;
-}
-void Game::setScore(int _score)
-{
-    score = _score;
-}
-int Game::getScore()
-{
-    return score;
-}
+
 void Game::startGame()
 {
     int controle;
+
+    remove("figuras.csv");
 
     data.randFigures(fileName.c_str(),sizeFile);
 
@@ -51,33 +37,45 @@ void Game::startGame()
 
     Screen tela(sizeScreen[0],sizeScreen[1]);
 
+    cout << "Informe o seu nome: ";
+    cin >> nome;
+    cout << endl;
+
     for (unsigned int i=0; i < sizeFile; i++)
     {
-        tela.setBrush(brush[i]);
-        figura[i]->draw(tela);
+        do{
+            tela.setBrush(brush[i]);
+            figura[i]->draw(tela);
 
-        cout << "Figura " << i+1  << " e um: "<< endl;
-        cout << tela;
-        cout << "Digite \n 1 - reta 2 - retangulo  3 - circulo  4 - triangulo: ";
-        cin >> controle;
+            cout << "Figura " << i+1  << " e um: "<< endl;
+            cout << tela;
+            cout << "Digite \n 1 - reta 2 - retangulo  3 - circulo  4 - triangulo: ";
+            cin >> controle;
+            if((controle < 1) || (controle > 4)){
+                cout << "Informe uma opcao valida!" << endl;
+                system("read -p \"Pressione enter para continuar\" saindo");
+                system("clear");
+
+            }
+        }while ((controle < 1) || (controle > 4));
 
         switch (controle) {
-            case 1:
-                resultado.push_back ( "reta");
-                break;
-            case 2:
-                resultado.push_back("retangulo");
-                break;
-            case 3:
-                resultado.push_back( "circulo");
-                break;
-            case 4:
-                resultado.push_back("triangulo");
-                break;
+        case 1:
+            resultado.push_back ( "reta");
+            break;
+        case 2:
+            resultado.push_back("retangulo");
+            break;
+        case 3:
+            resultado.push_back( "circulo");
+            break;
+        case 4:
+            resultado.push_back("triangulo");
+            break;
 
-            default:
+        default:
 
-                break;
+            break;
         }
         string aux1 = gabarito[i] , aux2 =resultado[i];
 
@@ -90,18 +88,44 @@ void Game::startGame()
 
         tela.clear();
         cout << endl;
-        usleep(microseconds);
         system("clear");
     }
 
-    cout << "sua pontuacao foi " << pontuacao << " de 100" << " pontos" << endl;
+    cout << nome <<" sua pontuacao foi " << pontuacao << " de 100" << " pontos" << endl;
 
+    cout << "Para exibir o gabarito digite 1 - sim 2 - nao: ";
+    cin >> controle;
+    if(controle == 1){
         for(int i=0;i<sizeFile;i++){
-            cout << gabarito[i]<< " = " << resultado[i] << endl;
-         }
+            string aux1 = gabarito[i] , aux2 =resultado[i];
 
-    system("read -p \"Pressione enter para sair\" saindo");
+            if(aux1 == "reta"){
+                cout << "Figura " << setw(2) << i+1  << " " <<gabarito[i] << setw(10) << " =  " << resultado[i] << setw(10) << " -> " ;
+            }
+            else if(aux1 == "circulo"){
+                cout << "Figura " << setw(2) << i+1  << " " <<gabarito[i] << setw(7) << " =  " << resultado[i] << setw(7) << " -> ";
+            }
+            else{
+                cout << "Figura " << setw(2) << i+1  << " " <<gabarito[i] << "  =  " << resultado[i] << "  -> ";
+            }
+
+            if(aux1 == aux2){
+                cout << " CORETA" << endl;
+            }
+            else{
+                cout << " INCORETA" << endl;
+            }
+
+
+        }
+    }
+    system("read -p \"Pressione enter para continuar\" saindo");
     remove("figuras.csv");
+}
+
+void Game::rank()
+{
+
 }
 
 void Game::menu()
@@ -116,19 +140,21 @@ void Game::menu()
         cout << "Informe sua opcao:" << endl;
         cin >> opcao;
         if((opcao < 1) || (opcao >3)){
-           cout << "A opcao informada  e invalida!" << endl;
+            cout << "A opcao informada  e invalida!" << endl;
+            system("read -p \"Pressione enter para continuar\" saindo");
+            system("clear");
         }
-     }while((opcao < 1) || (opcao >3));
+    }while((opcao < 1) || (opcao >3));
 
     switch (opcao) {
     case 1:
         startGame();
         break;
     case 2:
-
+        rank();
         break;
     case 3:
-
+        system("read -p \"Pressione enter para sair\" saindo");
         break;
 
     }

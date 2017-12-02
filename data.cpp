@@ -106,22 +106,22 @@ void Data::loadFigures(std::string fileName, int sizeScreen[], std::vector<Figur
         {
         case 1:
             data.push_back( new Reta(vetorDeCaracteristicas[0],vetorDeCaracteristicas[1],
-                                     vetorDeCaracteristicas[2],vetorDeCaracteristicas[3]) );
+                    vetorDeCaracteristicas[2],vetorDeCaracteristicas[3]) );
             break;
 
         case 2:
             data.push_back( new Retangulo(vetorDeCaracteristicas[0],vetorDeCaracteristicas[1],
-                                          vetorDeCaracteristicas[2],vetorDeCaracteristicas[3]) );
+                    vetorDeCaracteristicas[2],vetorDeCaracteristicas[3]) );
             break;
 
         case 3:
             data.push_back( new Circulo(vetorDeCaracteristicas[0],vetorDeCaracteristicas[1],
-                                        vetorDeCaracteristicas[2], vetorDeCaracteristicas[3]) );
+                    vetorDeCaracteristicas[2], vetorDeCaracteristicas[3]) );
             break;
 
         case 4:
             data.push_back( new Triangulo(vetorDeCaracteristicas[0],vetorDeCaracteristicas[1],
-                                        vetorDeCaracteristicas[2], vetorDeCaracteristicas[3]) );
+                    vetorDeCaracteristicas[2], vetorDeCaracteristicas[3]) );
             break;
 
         }
@@ -132,7 +132,7 @@ void Data::randFigures(std::string fileName, int size)
 {
     srand(time(0));
     std::string data;
-    std::string header = "15,20";
+    std::string header = "20,20";
     int figura;
     int caracteristicasAleatorias[4];
     unsigned int brushAleatorio;
@@ -217,11 +217,11 @@ void Data::randFigures(std::string fileName, int size)
                     caracteristicasAleatorias[3]= 0;
                 }
 
-                    data+= "," + std::to_string(caracteristicasAleatorias[i]) ;
+                data+= "," + std::to_string(caracteristicasAleatorias[i]) ;
 
             }
             break;
-            }
+        }
         case 4:{
             int chave = rand()%2 + 1;
             data = "triangulo";
