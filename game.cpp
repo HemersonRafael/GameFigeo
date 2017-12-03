@@ -96,14 +96,13 @@ void Game::startGame()
         pontuacao = 0;
     }
 
-
     cout << nome <<" sua pontuacao foi " << pontuacao << " de 100" << " pontos" << endl;
     addAoRank();
     cout << "Para exibir o gabarito digite 1 - sim 2 - nao: ";
     cin >> controle;
-        if(controle == 1){
-            printGabarito();
-        }
+    if(controle == 1){
+        printGabarito();
+    }
 
     system("read -p \"Pressione enter para continuar\" saindo");
     remove("figuras.csv");
@@ -146,9 +145,14 @@ void Game::menu()
 
         switch (opcao) {
         case 1:
+            system("clear");
+            cout << "*************** Game Figeo ***************" << endl;
             startGame();
             break;
         case 2:
+            system("clear");
+            cout << "*************** Game Figeo ***************" << endl;
+            cout << endl << "RANK DOS JOGADORES:" << endl << endl;
             printRank();
             system("read -p \"Pressione enter para continuar\" saindo");
             break;

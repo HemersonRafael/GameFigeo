@@ -30,7 +30,6 @@ private:
     int pontuacao;
     int sizeScreen[2];
     int microseconds;
-
 };
 
 #endif // GAME_H

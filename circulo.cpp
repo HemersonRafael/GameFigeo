@@ -8,7 +8,6 @@ Circulo::Circulo(int _x, int _y, int _r, int _fill)
     y = _y;
     r = _r;
     fill = _fill;
-    tipo = "circulo";
 }
 
 void Circulo::translade(int _x, int _y, Screen &t )

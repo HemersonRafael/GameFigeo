@@ -8,7 +8,6 @@ Retangulo::Retangulo(int _x0, int _y0, int _altura, int _largura)
     y = _y0;
     altura = _altura;
     largura = _largura;
-    tipo = "retangulo";
 }
 
 void Retangulo::draw(Screen &t)

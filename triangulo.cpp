@@ -7,7 +7,6 @@ Triangulo::Triangulo(int _x1, int _y1, int _x2, int _x3)
     x2 = _x2;
     x3 = _x3;
     y1 = _y1;
-    tipo = "triangulo";
 }
 
 void Triangulo::draw(Screen &t)
