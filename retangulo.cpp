@@ -24,6 +24,3 @@ void Retangulo::draw(Screen &t)
     r4.draw(t);
 
 }
-
-
-

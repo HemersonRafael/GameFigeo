@@ -38,4 +38,3 @@ void Reta::draw(Screen &t)
         i = i + 1;
     }
 }
-

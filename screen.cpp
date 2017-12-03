@@ -55,5 +55,3 @@ ostream &operator<<(ostream &os, Screen &t)
     }
     return (os);
 }
-
-

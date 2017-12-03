@@ -1,7 +1,6 @@
 #include "triangulo.h"
 #include "reta.h"
 
-
 Triangulo::Triangulo(int _x1, int _y1, int _x2, int _x3)
 {
     x1 = _x1;
@@ -10,7 +9,6 @@ Triangulo::Triangulo(int _x1, int _y1, int _x2, int _x3)
     y1 = _y1;
     tipo = "triangulo";
 }
-
 
 void Triangulo::draw(Screen &t)
 {

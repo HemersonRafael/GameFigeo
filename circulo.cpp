@@ -71,7 +71,3 @@ void Circulo::draw(Screen &t)
         translade(_x,_y,t);
     }
 }
-
-
-
-

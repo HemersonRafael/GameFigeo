@@ -9,7 +9,6 @@
 #include "circulo.h"
 #include "triangulo.h"
 
-
 void Data::logCsv(std::string data, std::string filename, std::string header)
 {
     std::ofstream myfile;
@@ -33,6 +32,38 @@ void Data::logCsv(std::string data, std::string filename, std::string header)
                 myfile.close();
             }
         }
+    }
+}
+
+void Data::loadRank(std::string fileName)
+{
+    std::string aux;
+    std::string cell;
+    std::ifstream file (fileName.c_str());
+    if (!file.is_open() && !file.good())
+    {
+        std::cout << "Erro to read: " << fileName << std::endl;
+        return;
+    }
+
+    getline(file,aux);
+    std::stringstream lineStreamHeader( aux );
+
+    for (int i =0; getline(lineStreamHeader,cell,','); i++ )
+    {
+        std::cout << cell << "\t";
+    }
+    std::cout <<endl;
+
+    while( getline(file,aux) )
+    {
+        std::stringstream lineStream(aux);
+
+        for (int contCell = 0; getline(lineStream, cell, ','); contCell++)
+        {
+            std::cout << cell << "\t";
+        }
+        std::cout <<endl;
     }
 }
 
@@ -179,7 +210,6 @@ void Data::randFigures(std::string fileName, int size)
             }
 
             break;
-
         }
         case 2:{
             data = "retangulo";
@@ -237,7 +267,6 @@ void Data::randFigures(std::string fileName, int size)
                 caracteristicasAleatorias[2]= 5;
                 caracteristicasAleatorias[3]= 5;
             }
-
 
             for(int i =0; i<4; i++){
                 data+= "," + std::to_string(caracteristicasAleatorias[i]) ;

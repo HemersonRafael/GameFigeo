@@ -15,8 +15,9 @@ public:
     virtual ~Game();
     void menu();
     void startGame();
-    void rank();
-
+    void addAoRank();
+    void printGabarito();
+    void printRank();
 private:
     string nome;
     Data data;

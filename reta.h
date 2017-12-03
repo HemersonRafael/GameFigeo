@@ -18,5 +18,3 @@ public:
 };
 
 #endif // RETA_H
-
-

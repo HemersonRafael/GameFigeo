@@ -3,6 +3,7 @@
 #include <cstdio>
 #include <cstdlib>
 #include <string>
+#include <sstream>
 #include <vector>
 #include "figurageometrica.h"
 #include "screen.h"
@@ -91,74 +92,131 @@ void Game::startGame()
         system("clear");
     }
 
-    cout << nome <<" sua pontuacao foi " << pontuacao << " de 100" << " pontos" << endl;
+    if(pontuacao < 0){
+        pontuacao = 0;
+    }
 
+
+    cout << nome <<" sua pontuacao foi " << pontuacao << " de 100" << " pontos" << endl;
+    addAoRank();
     cout << "Para exibir o gabarito digite 1 - sim 2 - nao: ";
     cin >> controle;
-    if(controle == 1){
-        for(int i=0;i<sizeFile;i++){
-            string aux1 = gabarito[i] , aux2 =resultado[i];
-
-            if(aux1 == "reta"){
-                cout << "Figura " << setw(2) << i+1  << " " <<gabarito[i] << setw(10) << " =  " << resultado[i] << setw(10) << " -> " ;
-            }
-            else if(aux1 == "circulo"){
-                cout << "Figura " << setw(2) << i+1  << " " <<gabarito[i] << setw(7) << " =  " << resultado[i] << setw(7) << " -> ";
-            }
-            else{
-                cout << "Figura " << setw(2) << i+1  << " " <<gabarito[i] << "  =  " << resultado[i] << "  -> ";
-            }
-
-            if(aux1 == aux2){
-                cout << " CORETA" << endl;
-            }
-            else{
-                cout << " INCORETA" << endl;
-            }
-
-
+        if(controle == 1){
+            printGabarito();
         }
-    }
+
     system("read -p \"Pressione enter para continuar\" saindo");
     remove("figuras.csv");
 }
 
-void Game::rank()
+void Game::addAoRank()
 {
+   stringstream ss;
+   string str;
+   ss << nome << "," << pontuacao;
+   str = ss.str();
+   data.logCsv(str,"rank.csv","Nome,pontuacao");
 
+}
+
+void Game::printRank()
+{
+    data.loadRank("rank.csv");
 }
 
 void Game::menu()
 {
-    int opcao;
-    do{
-        cout << "*************** Game Figeo ***************" << endl;
-        cout << "MENU:" << endl;
-        cout << "1 - Jogar" << endl;
-        cout << "2 - Rank dos jogadores" << endl;
-        cout << "3 - Sair do jogo" << endl;
-        cout << "Informe sua opcao:" << endl;
-        cin >> opcao;
-        if((opcao < 1) || (opcao >3)){
-            cout << "A opcao informada  e invalida!" << endl;
+    int opcao = 0;
+    while (opcao != 3) {
+
+        do{
+            cout << "*************** Game Figeo ***************" << endl;
+            cout << "MENU:" << endl;
+            cout << "1 - Jogar" << endl;
+            cout << "2 - Rank dos jogadores" << endl;
+            cout << "3 - Sair do jogo" << endl;
+            cout << "Informe sua opcao:" << endl;
+            cin >> opcao;
+            if((opcao < 1) || (opcao >3)){
+                cout << "A opcao informada  e invalida!" << endl;
+                system("read -p \"Pressione enter para continuar\" saindo");
+                system("clear");
+            }
+        }while((opcao < 1) || (opcao >3));
+
+        switch (opcao) {
+        case 1:
+            startGame();
+            break;
+        case 2:
+            printRank();
             system("read -p \"Pressione enter para continuar\" saindo");
-            system("clear");
+            break;
+        case 3:
+            system("read -p \"Pressione enter para sair\" saindo");
+            break;
+
         }
-    }while((opcao < 1) || (opcao >3));
-
-    switch (opcao) {
-    case 1:
-        startGame();
-        break;
-    case 2:
-        rank();
-        break;
-    case 3:
-        system("read -p \"Pressione enter para sair\" saindo");
-        break;
-
+        system("clear");
     }
 
 }
 
+void Game::printGabarito(){
+    for(unsigned int i=0;i<sizeFile;i++){
+        string aux1 = gabarito[i] , aux2 =resultado[i];
 
+        if(aux1 == "reta"){
+            if(aux1==aux2){
+                cout << "Figura " << setw(2) << i+1  << " " <<gabarito[i] << setw(10) << " =  " << resultado[i] << setw(10) << " -> " ;
+            }
+            else{
+                cout << "Figura " << setw(2) << i+1  << " " <<gabarito[i] << setw(10) << " =  " << resultado[i];
+                if(aux2 == "circulo"){
+                    cout << setw(7) << " -> ";
+                }
+                else{
+                    cout << "  -> ";
+                }
+            }
+        }
+
+        else if(aux1 == "circulo"){
+
+            if(aux1 == aux2){
+                cout << "Figura " << setw(2) << i+1  << " " <<gabarito[i] << setw(7) << " =  " << resultado[i] << setw(7) << " -> ";
+             }
+            else{
+                cout << "Figura " << setw(2) << i+1  << " " <<gabarito[i] << setw(7) << " =  " << resultado[i];
+                if(aux2 == "reta"){
+                    cout << setw(10) << " -> ";
+                }
+                else{
+                    cout << "  -> ";
+                }
+             }
+        }
+
+        else{
+            cout << "Figura " << setw(2) << i+1  << " " <<gabarito[i] << "  =  " << resultado[i];
+            if(aux2 == "circulo"){
+                cout << setw(7) << " -> ";
+            }
+            else if(aux2 == "reta"){
+                cout << setw(10) << " -> ";
+            }
+            else{
+                cout << "  -> ";
+            }
+        }
+
+        if(aux1 == aux2){
+            cout << " CORRETA" << endl;
+        }
+        else{
+            cout << " INCORRETA" << endl;
+        }
+
+    }
+
+}
