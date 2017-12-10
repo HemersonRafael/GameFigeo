@@ -131,10 +131,10 @@ void Game::menu()
         do{
             cout << "*************** Game Figeo ***************" << endl;
             cout << "MENU:" << endl;
-            cout << "1 - Jogar" << endl;
-            cout << "2 - Rank dos jogadores" << endl;
-            cout << "3 - Sair do jogo" << endl;
-            cout << "Informe sua opcao:" << endl;
+            cout << "\t1 - Jogar" << endl;
+            cout << "\t2 - Rank dos jogadores" << endl;
+            cout << "\t3 - Sair do jogo" << endl;
+            cout << "\nInforme sua opcao: ";
             cin >> opcao;
             if((opcao < 1) || (opcao >3)){
                 cout << "A opcao informada  e invalida!" << endl;
